@@ -1,0 +1,77 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "multi_match": {
+            "fields": [
+              "original_group_title",
+              "original_group_summary",
+              "original_group_agent"
+            ],
+            "query": "$1",
+            "type": "phrase",
+            "operator": "and"
+          }
+        }
+      ]
+    }
+  },
+  "size": 0,
+  "suggest": {
+    "text": "text",
+    "didyoumean": {
+      "phrase": {
+        "field": "didyoumean_everything",
+        "size": 1,
+        "max_errors": 2,
+        "gram_size": 3,
+        "real_word_error_likelihood": 1,
+        "collate": {
+          "query": {
+            "source": {
+              "bool": {
+                "filter": [
+                  {
+                    "multi_match": {
+                      "fields": [
+                        "original_group_title",
+                        "original_group_summary",
+                        "original_group_agent"
+                      ],
+                      "query": "{{suggestion}}",
+                      "operator": "and"
+                    }
+                  },
+                  {
+                    "multi_match": {
+                      "fields": [
+                        "multilang_group_title.*",
+                        "multilang_group_summary.*",
+                        "multilang_group_agent.*"
+                      ],
+                      "query": "{{suggestion}}",
+                      "operator": "or",
+                      "minimum_should_match": "81%"
+                    }
+                  },
+                  {
+                    "terms": {
+                      "customerId": [
+                        "$2"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "highlight": {
+          "pre_tag": "<em>",
+          "post_tag": "</em>"
+        }
+      }
+    }
+  }
+}

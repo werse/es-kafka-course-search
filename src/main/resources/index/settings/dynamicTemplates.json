@@ -1,0 +1,139 @@
+[
+  {
+    "sort_field": {
+      "match": "sort_*",
+      "mapping": {
+        "type": "keyword",
+        "normalizer": "keyword_lowercase",
+        "ignore_above": 50,
+        "index": false,
+        "doc_values": true,
+        "global_ordinals": true
+      }
+    }
+  },
+  {
+    "source_field": {
+      "match": "source_*",
+      "mapping": {
+        "index": false
+      }
+    }
+  },
+  {
+    "date_field": {
+      "match": "date_*",
+      "mapping": {
+        "type": "date",
+        "format": "yyyy-MM-dd'T'HH:mm:ssZ||yyyy-MM-dd'T'HH:mm:ss||yyyy-MM-dd"
+      }
+    }
+  },
+  {
+    "integer_field": {
+      "match": "integer_*",
+      "mapping": {
+        "type": "integer"
+      }
+    }
+  },
+  {
+    "float_field": {
+      "match": "float_*",
+      "mapping": {
+        "type": "float"
+      }
+    }
+  },
+  {
+    "keyword_field": {
+      "match": "keyword_*",
+      "mapping": {
+        "type": "keyword",
+        "eager_global_ordinals": true
+      }
+    }
+  },
+  {
+    "boolean_field": {
+      "match": "boolean_*",
+      "mapping": {
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "eng": {
+      "match": "eng",
+      "mapping": {
+        "type": "text",
+        "analyzer": "extended_english",
+        "index_options": "docs",
+        "norms": true
+      }
+    }
+  },
+  {
+    "ara": {
+      "match": "ara",
+      "mapping": {
+        "type": "text",
+        "analyzer": "arabic",
+        "index_options": "docs",
+        "norms": true
+      }
+    }
+  },
+  {
+    "zho": {
+      "match": "zho",
+      "mapping": {
+        "type": "text",
+        "analyzer": "smartcn",
+        "index_options": "docs",
+        "norms": true
+      }
+    }
+  },
+  {
+    "default": {
+      "match": "default",
+      "mapping": {
+        "type": "text",
+        "analyzer": "default_analyzer",
+        "index_options": "docs",
+        "norms": true
+      }
+    }
+  },
+  {
+    "original_field": {
+      "match": "original_*",
+      "mapping": {
+        "type": "text",
+        "analyzer": "original_analyzer",
+        "index_options": "docs",
+        "norms": true
+      }
+    }
+  },
+  {
+    "triplet_field": {
+      "match": "triplet_*",
+      "mapping": {
+        "type": "text",
+        "analyzer": "triplet_analyzer",
+        "norms": true,
+        "index_options": "docs"
+      }
+    }
+  },
+  {
+    "other_fields": {
+      "match": "*",
+      "mapping": {
+        "index": false
+      }
+    }
+  }
+]

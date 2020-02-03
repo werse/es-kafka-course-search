@@ -1,0 +1,149 @@
+{
+  "id": {
+    "type": "keyword",
+    "eager_global_ordinals": true
+  },
+  "customerId": {
+    "type": "keyword"
+  },
+  "completion": {
+    "type": "completion",
+    "analyzer": "simple",
+    "max_input_length": "50",
+    "contexts": [
+      {
+        "name": "scope",
+        "type": "category"
+      }
+    ]
+  },
+  "didyoumean_everything": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "didyoumean_analyzer"
+  },
+  "didyoumean_title": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "didyoumean_analyzer"
+  },
+  "didyoumean_agent": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "didyoumean_analyzer"
+  },
+  "multilang_group_title": {
+    "properties": {
+      "eng": {
+        "type": "text",
+        "norms": true,
+        "index_options": "docs",
+        "analyzer": "extended_english",
+        "copy_to": [
+          "didyoumean_everything",
+          "didyoumean_title",
+          "triplet_group_title",
+          "original_group_title",
+          "pair_group_title",
+          "sort_group_title"
+        ]
+      }
+    }
+  },
+  "multilang_group_agent_primary": {
+    "properties": {
+      "eng": {
+        "type": "text",
+        "norms": false,
+        "index_options": "docs",
+        "analyzer": "extended_english",
+        "copy_to": [
+          "didyoumean_everything",
+          "didyoumean_agent",
+          "triplet_group_agent_primary",
+          "original_group_agent_primary"
+        ]
+      }
+    }
+  },
+  "multilang_group_summary": {
+    "properties": {
+      "eng": {
+        "type": "text",
+        "norms": false,
+        "index_options": "docs",
+        "analyzer": "extended_english",
+        "copy_to": [
+          "original_group_summary"
+        ]
+      }
+    }
+  },
+  "multilang_group_secondary_fields": {
+    "properties": {
+      "eng": {
+        "type": "text",
+        "norms": false,
+        "index_options": "docs",
+        "analyzer": "extended_english",
+        "copy_to": []
+      }
+    }
+  },
+  "original_group_title": {
+    "type": "text",
+    "norms": true,
+    "index_options": "positions",
+    "analyzer": "original_analyzer"
+  },
+  "original_group_agent_primary": {
+    "type": "text",
+    "norms": false,
+    "index_options": "positions",
+    "analyzer": "original_analyzer"
+  },
+  "original_group_summary": {
+    "type": "text",
+    "norms": false,
+    "index_options": "positions",
+    "analyzer": "original_analyzer"
+  },
+  "triplet_group_title": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "triplet_analyzer"
+  },
+  "triplet_group_agent_primary": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "triplet_analyzer"
+  },
+  "triplet_group_summary": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "triplet_analyzer"
+  },
+  "triplet_group_secondary_fields": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "triplet_analyzer"
+  },
+  "pair_group_title": {
+    "type": "text",
+    "norms": false,
+    "index_options": "docs",
+    "analyzer": "pair_analyzer"
+  },
+  "all_agent_id": {
+    "type": "keyword",
+    "index": true,
+    "doc_values": false
+  }
+}
